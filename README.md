@@ -20,7 +20,11 @@ Open `index.html`, or serve the folder (needed for the self-hosted fonts):
 python3 -m http.server 8000
 ```
 
-Deploys as-is to any static host (GitHub Pages, Netlify, Vercel…).
+## Hosting (GitHub Pages)
+
+`.github/workflows/pages.yml` publishes the site on every push to this branch (or `main`), and can also be run by hand from the Actions tab.
+One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+Live URL: https://mohamadayoobzawahir-png.github.io/portfolio/
 
 ## Notes
 
