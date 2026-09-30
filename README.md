@@ -22,9 +22,9 @@ python3 -m http.server 8000
 
 ## Hosting (GitHub Pages)
 
-`.github/workflows/pages.yml` publishes the site on every push to this branch (or `main`), and can also be run by hand from the Actions tab.
+`.github/workflows/pages.yml` publishes the site on every push to `main`, and can also be run by hand from the Actions tab.
 One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-Live URL: https://mohamadayoobzawahir-png.github.io/portfolio/
+Live URL: https://mohamadayoobzawahir-png.github.io/guru-interiors/
 
 ## Notes
 
