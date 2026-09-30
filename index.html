@@ -8,8 +8,24 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/montserrat-300.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script>
+    // play the opening animation once per visit, not when coming back from a project page
+    try {
+      if (!sessionStorage.getItem('guru-intro') && !location.hash &&
+          !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('intro');
+        sessionStorage.setItem('guru-intro', '1');
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body>
+
+  <div class="intro-screen" aria-hidden="true">
+    <img src="assets/img/logo.svg" alt="" width="445" height="85">
+    <span class="intro-screen__line"></span>
+    <p class="intro-screen__tag">Transforming Spaces, Enriching Lives</p>
+  </div>
 
   <header class="site-header" id="top">
     <a class="logo" href="#home" aria-label="Guru Interiors — home">
@@ -30,6 +46,9 @@
     <!-- Hero -->
     <section class="hero" id="home" aria-label="Guru Interiors">
       <h1 class="visually-hidden">Guru Interiors — Transforming Spaces, Enriching Lives</h1>
+      <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/hero.jpg" aria-hidden="true">
+        <source src="assets/video/guru_interio.mp4" type="video/mp4">
+      </video>
       <div class="social social--hero">
         <a href="https://www.instagram.com/gurufitout" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24"><use href="#i-instagram"/></svg>
@@ -74,10 +93,24 @@
     <section class="vision" aria-label="Vision, Mission and Goals">
       <div class="vision__stage">
         <ul class="vision__labels">
-          <li style="--x:610;--y:296">Vision</li>
-          <li style="--x:528;--y:346">Mission</li>
-          <li style="--x:444;--y:396">Goals</li>
+          <li style="--x:610;--y:296"><button type="button" class="vision__trigger" aria-controls="vision-vision" aria-expanded="false">Vision</button></li>
+          <li style="--x:528;--y:346"><button type="button" class="vision__trigger" aria-controls="vision-mission" aria-expanded="false">Mission</button></li>
+          <li style="--x:444;--y:396"><button type="button" class="vision__trigger" aria-controls="vision-goals" aria-expanded="false">Goals</button></li>
         </ul>
+      </div>
+      <div class="vision__panels">
+        <div class="vision__panel" id="vision-vision" style="--x:700;--y:296">
+          <h3>Our Vision</h3>
+          <p>To be Qatar's most trusted fit-out partner, recognised for spaces that combine bold design, lasting quality and genuine purpose.</p>
+        </div>
+        <div class="vision__panel" id="vision-mission" style="--x:650;--y:346">
+          <h3>Our Mission</h3>
+          <p>To turn every client's vision into a functional, inspiring environment through innovative design, skilled craftsmanship and service that goes beyond expectations.</p>
+        </div>
+        <div class="vision__panel" id="vision-goals" style="--x:540;--y:396">
+          <h3>Our Goals</h3>
+          <p>To deliver every project on time and to the highest standard, invest in our people, and grow alongside our clients across commercial, retail and hospitality spaces.</p>
+        </div>
       </div>
     </section>
 
@@ -86,12 +119,30 @@
       <div class="container">
         <h2 class="display">Services</h2>
         <ul class="service-list">
-          <li>Fit-out Works</li>
-          <li>Project Management</li>
-          <li>Design Management</li>
-          <li>Construction Management</li>
-          <li>Engineering &amp; Architecture</li>
-          <li>Consultancy</li>
+          <li tabindex="0">
+            <span class="service__title">Fit-out Works</span>
+            <div class="service__detail"><p>Complete turn-key interiors for restaurants, retail and offices, from joinery and finishes to MEP, lighting and handover.</p></div>
+          </li>
+          <li tabindex="0">
+            <span class="service__title">Project Management</span>
+            <div class="service__detail"><p>A single point of contact who plans, schedules and coordinates every trade, keeping your project on time and on budget.</p></div>
+          </li>
+          <li tabindex="0">
+            <span class="service__title">Design Management</span>
+            <div class="service__detail"><p>We coordinate designers, consultants and authority approvals so the concept is buildable, compliant and true to your brand.</p></div>
+          </li>
+          <li tabindex="0">
+            <span class="service__title">Construction Management</span>
+            <div class="service__detail"><p>On-site supervision, quality control and safety management through every stage of the build.</p></div>
+          </li>
+          <li tabindex="0">
+            <span class="service__title">Engineering &amp; Architecture</span>
+            <div class="service__detail"><p>Structural, MEP and architectural solutions that make your space safe, efficient and ready for approval.</p></div>
+          </li>
+          <li tabindex="0">
+            <span class="service__title">Consultancy</span>
+            <div class="service__detail"><p>Expert advice on budgets, materials, feasibility and post fit-out improvements before you commit.</p></div>
+          </li>
         </ul>
       </div>
     </section>
@@ -102,26 +153,26 @@
         <h2 class="display">Projects</h2>
         <div class="project-card">
           <ul class="project-grid project-grid--5">
-            <li><span class="logo-box"><img src="assets/img/logo-syon.png" alt="Syon logo" width="383" height="199" style="--w:383;--h:199"></span><span>Syon</span><span>Qtaifan Island</span><strong>Interior design</strong></li>
-            <li><span class="logo-box"><img src="assets/img/logo-mudakkan.png" alt="Mudakkan logo" width="375" height="166" style="--w:375;--h:166"></span><span>Mudakkan Restaurant</span><span>Msheireb</span><strong>Turn-key fit out project</strong></li>
-            <li><span class="logo-box"><img src="assets/img/logo-earth.png" alt="Earth logo" width="423" height="67" style="--w:423;--h:67"></span><span>Earth Organic Coffee Bar</span><span>Msheireb</span><strong>Turn-key fit out project</strong></li>
-            <li><span class="logo-box"><img src="assets/img/logo-crust.png" alt="Crust by Rusk logo" width="472" height="111" style="--w:472;--h:111"></span><span>Crust by Rusk</span><span>Msheireb</span><strong>Turn-key fit out project</strong></li>
-            <li><span class="logo-box"><img src="assets/img/logo-rusk.png" alt="Rusk Artisanal Bakery logo" width="331" height="185" style="--w:331;--h:185"></span><span>Rusk Artisanal Bakery</span><span>Msheireb</span><strong>Post fit out solutions</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-syon.png" alt="Syon logo" width="383" height="199" style="--w:383;--h:199"></span><a class="project-link" href="project.html?p=syon">Syon</a><span>Qtaifan Island</span><strong>Interior design</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-mudakkan.png" alt="Mudakkan logo" width="375" height="166" style="--w:375;--h:166"></span><a class="project-link" href="project.html?p=mudakkan">Mudakkan Restaurant</a><span>Msheireb</span><strong>Turn-key fit out project</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-earth.png" alt="Earth logo" width="423" height="67" style="--w:423;--h:67"></span><a class="project-link" href="project.html?p=earth">Earth Organic Coffee Bar</a><span>Msheireb</span><strong>Turn-key fit out project</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-crust.png" alt="Crust by Rusk logo" width="472" height="111" style="--w:472;--h:111"></span><a class="project-link" href="project.html?p=crust">Crust by Rusk</a><span>Msheireb</span><strong>Turn-key fit out project</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-rusk.png" alt="Rusk Artisanal Bakery logo" width="331" height="185" style="--w:331;--h:185"></span><a class="project-link" href="project.html?p=rusk">Rusk Artisanal Bakery</a><span>Msheireb</span><strong>Post fit out solutions</strong></li>
           </ul>
           <ul class="project-grid project-grid--4">
-            <li><span class="logo-box"><img src="assets/img/logo-rue.png" alt="Rue logo" width="577" height="149" style="--w:577;--h:149"></span><span>Rue</span><span>West Walk</span><strong>Internal finishes</strong></li>
-            <li><span class="logo-box"><img src="assets/img/logo-dow.png" alt="Dow Restaurant logo" width="446" height="167" style="--w:446;--h:167"></span><span>Dow Restaurant</span><span>Duhail</span><strong>Turn-key fit out project</strong></li>
-            <li><span class="logo-box"><img src="assets/img/logo-saahel.png" alt="Saahel logo" width="513" height="207" style="--w:513;--h:207"></span><span>Saahel</span><span>Qtaifan Island</span><strong>Interior design</strong></li>
-            <li><span class="logo-box"><img src="assets/img/logo-santa-nata.png" alt="Santa Nata logo" width="704" height="165" style="--w:704;--h:165"></span><span>Santa Nata</span><span>Msheireb</span><strong>Post fit out solutions</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-rue.png" alt="Rue logo" width="577" height="149" style="--w:577;--h:149"></span><a class="project-link" href="project.html?p=rue">Rue</a><span>West Walk</span><strong>Internal finishes</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-dow.png" alt="Dow Restaurant logo" width="446" height="167" style="--w:446;--h:167"></span><a class="project-link" href="project.html?p=dow">Dow Restaurant</a><span>Duhail</span><strong>Turn-key fit out project</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-saahel.png" alt="Saahel logo" width="513" height="207" style="--w:513;--h:207"></span><a class="project-link" href="project.html?p=saahel">Saahel</a><span>Qtaifan Island</span><strong>Interior design</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-santa-nata.png" alt="Santa Nata logo" width="704" height="165" style="--w:704;--h:165"></span><a class="project-link" href="project.html?p=santa-nata">Santa Nata</a><span>Msheireb</span><strong>Post fit out solutions</strong></li>
 
-            <li><span class="logo-box"><img src="assets/img/logo-ramen.png" alt="Ramen Restaurant logo" width="351" height="287" style="--w:351;--h:287"></span><span>Ramen Restaurant</span><span>Msheireb</span><strong>Structural solutions</strong></li>
-            <li><span class="logo-box"><img src="assets/img/logo-trzi.png" alt="TRZI logo" width="337" height="359" style="--w:337;--h:359"></span><span>TRZI</span><span>Msheireb</span><strong>Turn-key fit out project</strong></li>
-            <li><span class="logo-box"><img src="assets/img/logo-anthophile.png" alt="Anthophile Flowers logo" width="535" height="138" style="--w:535;--h:138"></span><span>Anthophile Flowers</span><span>West Walk</span><strong>Interior design</strong></li>
-            <li><span class="logo-box"><img src="assets/img/logo-eunoia.png" alt="Eunoia Snack Bar logo" width="421" height="410" style="--w:421;--h:410"></span><span>Eunoia Snack Bar</span><span>West Walk</span><strong>Turn-key fit out project</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-ramen.png" alt="Ramen Restaurant logo" width="351" height="287" style="--w:351;--h:287"></span><a class="project-link" href="project.html?p=ramen">Ramen Restaurant</a><span>Msheireb</span><strong>Structural solutions</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-trzi.png" alt="TRZI logo" width="337" height="359" style="--w:337;--h:359"></span><a class="project-link" href="project.html?p=trzi">TRZI</a><span>Msheireb</span><strong>Turn-key fit out project</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-anthophile.png" alt="Anthophile Flowers logo" width="535" height="138" style="--w:535;--h:138"></span><a class="project-link" href="project.html?p=anthophile">Anthophile Flowers</a><span>West Walk</span><strong>Interior design</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-eunoia.png" alt="Eunoia Snack Bar logo" width="421" height="410" style="--w:421;--h:410"></span><a class="project-link" href="project.html?p=eunoia">Eunoia Snack Bar</a><span>West Walk</span><strong>Turn-key fit out project</strong></li>
 
-            <li><span class="logo-box"><img src="assets/img/logo-qubaa.png" alt="Qubaa Tailor logo" width="345" height="299" style="--w:345;--h:299"></span><span>Qubaa Tailor</span><span>Boulevard / Lusail</span><strong>Turn-key fit out project</strong></li>
-            <li><span class="logo-box"><img src="assets/img/logo-piccolo.png" alt="Piccolo Café logo" width="418" height="207" style="--w:418;--h:207"></span><span>Piccolo Café</span><span>Boulevard / Lusail</span><strong>Turn-key fit-out project.</strong></li>
-            <li><span class="logo-box"><img src="assets/img/logo-noulaya.png" alt="Noulaya logo" width="334" height="333" style="--w:334;--h:333"></span><span>Noulaya</span><span>Msheireb</span><strong>Post fit out solutions</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-qubaa.png" alt="Qubaa Tailor logo" width="345" height="299" style="--w:345;--h:299"></span><a class="project-link" href="project.html?p=qubaa">Qubaa Tailor</a><span>Boulevard / Lusail</span><strong>Turn-key fit out project</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-piccolo.png" alt="Piccolo Café logo" width="418" height="207" style="--w:418;--h:207"></span><a class="project-link" href="project.html?p=piccolo">Piccolo Café</a><span>Boulevard / Lusail</span><strong>Turn-key fit-out project.</strong></li>
+            <li><span class="logo-box"><img src="assets/img/logo-noulaya.png" alt="Noulaya logo" width="334" height="333" style="--w:334;--h:333"></span><a class="project-link" href="project.html?p=noulaya">Noulaya</a><span>Msheireb</span><strong>Post fit out solutions</strong></li>
           </ul>
         </div>
       </div>
